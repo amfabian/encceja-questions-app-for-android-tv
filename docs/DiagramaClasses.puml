@@ -1,0 +1,71 @@
+@startuml Diagrama de Classes
+
+package "model" {
+
+     Class "Alternativa" {
+        Char letra
+        String  texto
+        getLetra()
+        getTexto()
+        setLetra(Char letra)
+        setTexto(String texto)
+    }
+    Class "Questao" {
+        String area
+        String conteudo 
+        List <Alternativa> alternativas
+        Alternativa resposta
+        Alternativa verificarResposta(Alternativa alternativa)
+    }
+
+    Class "Area" {
+        List <Questao> questoes
+    }
+
+
+    Class "Prova" {
+        List <Questao> questoesLinguagens
+        List <Questao> questoesMatematica
+        List <Questao> questoesCienciasHumanas
+        List <Questao> questoesCienciasNatureza
+        Gabarito gabarito
+    }
+    Class "Gabarito" {
+        List <Alternativa> respostas
+    }
+}
+
+package "view" {
+
+    Class MainActivity {
+        Intent escolhaArea()
+        Intent responderQuestaoAleatoria()
+        Intent inserirQuestao()
+        Intent visualizarDesempenho()
+    }
+
+    Class EscolhaArea {
+        Intent linguagens
+        Intent matematica
+        Intent cienciasHumanas
+        Intent cienciasNatureza
+        
+    }
+    Class SimularProva {
+        Prova gerarProva(Int qtdQuestoesPorArea)        
+    }
+    Class ResponderQuestoes {
+        boolean verificarResposta(Alternativa alternativa)
+    }
+
+    Class VisualizarDesempenho {
+        Intent desempenhoGeral
+        Intent desempenhoArea
+        
+    }
+
+}
+
+
+
+@enduml
